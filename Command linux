@@ -1,0 +1,36 @@
+pwd (path working directory): lenh in duong dan den vi tri ban dang xem.
+
+cd (Change Directory): dung de di chuye
+  + cd ..: chuyen len thu muc 1 cap.
+  + cd: ve thang thu muc home.
+  + cd-: di chuyen den thu muc o truoc do.
+
+ls (list): hien thi danh sach tap tin va thu muc co trong thu muc dang xem:
+  + ls -R: liet ke cac fiel bao gom ca cac thu muc o ben trong.
+  + ls -l: liet ke cac quyen cua cac file va folder.
+  + ls -a : liet ke tat ca, ke ca cac file an.
+
+cat (concatenate): de xem noi dung tren file:
+  + cat > namefile: tao ra new file.
+  + cat namefile1 namefile2 > namefile3: nhap file 1, 2 -> 3.
+  + cat namefile | tr a-z A-Z > output.txt: chuyen tu in tuong sang in hoa va nguoc lai.
+
+cp (copy) dung de sao chep:
+  + cp file /xx/xxx/xxx.
+
+mv (move) di chuyen hoac doi ten:
+  + mv oldfile.txt newfile.txt
+  + mv file.txt /home/user/documents/
+
+mkdir (make directory) tao thu muc
+  + mkdir namedirectiry.
+
+rm (remove) xoa cac file or folder.
+  
+touch de tao file: 
+  + /home/username/Documents/Web.html
+
+
+grep "string can search" name_file (search strong in file).
+sort <option> <file>: sort tang hoac giam.
+rmdir name_folder: detele folder.
