@@ -19,7 +19,7 @@
   
 - Java không có lạp trồng toán tử.
 
-  - note
+- note
         String a = new String("Hello");
         String b = new String("Hello");
         String c = a;
