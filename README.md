@@ -29,6 +29,8 @@
     + String x1 = x; // x1 được tham chiếu đến địa chỉ x không tạo ra đối tượng mới.
     + s==x; //false
     + x1=x; // true
+    + x1 = "Hello";
+    + x1=x; // false vì x1 = "Hello"; cấp phát bộ nhớ mới và tạo đối tượng mới.
 
       
 
