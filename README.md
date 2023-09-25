@@ -29,7 +29,6 @@
   + String s4 = new String("Fresher");
     + s1, s2, s3 được lưu trong String Pool;
     + s4 được lưu trong heap.
-      ggg
 - Quản lý bộ nhớ trong java:
   + trong Java có hai loại bộ nhớ chính:
     + Bộ nhớ heap: lưu trữ các dữ liệu được cấp phát cho các tham chiếu.
