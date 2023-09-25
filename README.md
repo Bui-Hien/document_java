@@ -24,7 +24,11 @@
     + Bộ nhớ heap: lưu trữ các dữ liệu được cấp phát cho các tham chiếu.
     + Bộ nhớ stack: lưu trữ các tham chiếu ( ~địa chỉ các con trỏ) và cá dữ liệu nguyên thủy.
   + ví dụ:
-    + String s= new String("Hello"); // chuỗi "Hello" được lưu trên bộ nhớ "heap",  s được lưu bên "stack" và lưu địa chỉ trỏ đến chuỗi "Hello".
+    + String s = new String("Hello"); // chuỗi "Hello" được lưu trên bộ nhớ "heap",  s được lưu bên "stack" và lưu địa chỉ trỏ đến chuỗi "Hello".
+    + String x = new String("Hello"); // chuỗi "Hello" được lưu trên bộ nhớ "heap" và khác địa chỉ với chuỗi "Hello" của đối tượng "s".
+    + String x1 = x; // x1 được tham chiếu đến địa chỉ x không tạo ra đối tượng mới.
+    + s==x; //false
+    + x1=x; // true
           
       
 
