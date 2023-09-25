@@ -25,6 +25,7 @@
      + Bộ nhớ stack: lưu trữ các tham chiếu ( ~địa chỉ các con trỏ) và cá dữ liệu nguyên thủy.
     + ví dụ:
           + String s= new String("Hello"); // chuỗi "Hello" được lưu trên bộ nhớ "heap",  s được lưu bên "stack" và lưu địa chỉ trỏ đến chuỗi "Hello".
+          
       
 
     
