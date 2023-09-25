@@ -32,6 +32,10 @@
     + x1 = "Hello";
     + x1=x; // false vì x1 = "Hello"; cấp phát bộ nhớ mới và tạo đối tượng mới.
 
+
+- Trong java chỉ có tham trị.
+  + ví dụ:
+  + public static void swap(Integer integer1, Integer integer2){ Integer temp = integer1; integer1 = integer1 = integer2; integer2 = temp;}
       
 
     
