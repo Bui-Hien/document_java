@@ -20,10 +20,10 @@
 - Java không có lạp trồng toán tử.
 
 - Quản lý bộ nhớ trong java:
-      + trong Java có hai loại bộ nhớ chính:
-          + Bộ nhớ heap: lưu trữ các dữ liệu được cấp phát cho các tham chiếu.
-          + Bộ nhớ stack: lưu trữ các tham chiếu ( ~địa chỉ các con trỏ) và cá dữ liệu nguyên thủy.
-      + ví dụ:
+  + trong Java có hai loại bộ nhớ chính:
+     + Bộ nhớ heap: lưu trữ các dữ liệu được cấp phát cho các tham chiếu.
+     + Bộ nhớ stack: lưu trữ các tham chiếu ( ~địa chỉ các con trỏ) và cá dữ liệu nguyên thủy.
+    + ví dụ:
           + String s= new String("Hello"); // chuỗi "Hello" được lưu trên bộ nhớ "heap",  s được lưu bên "stack" và lưu địa chỉ trỏ đến chuỗi "Hello".
       
 
