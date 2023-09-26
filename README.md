@@ -56,6 +56,11 @@
     + after:
       + temp, integer2 -> 'giá trị x';
       +  integer1 -> 'giá trị y';
+     
+- Interface:
+  + các phương thúc trong interface đều là public, abstract;
+  + các thuộc tính trong interface đều là final;
+  + nếu một lớp implements lại interface mà không override thì lớp đó thành abstract;
 - Collection:
   	- List:
   		+List cho phép lưu trữ dữ liệu trùng lặp, truy cập dữ liệu dựa theo chỉ số là vị trí mà chúng ta cần cúng được coi như 'Array' có các API phong phú hơn vào không bị fixsize như 'Array'.
