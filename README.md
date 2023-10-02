@@ -9,6 +9,8 @@
 
 - final trong java:
   + khong the thay doi o nho trong ram khi tao bien.
+  + trong class khong ke thua.
+  + trong bien la constant.
  
 - Wrapper class:
   + các lớp bao không thể thay đổi được(Immutable class).
