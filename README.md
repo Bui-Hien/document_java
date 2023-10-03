@@ -68,6 +68,12 @@
   		+List cho phép lưu trữ dữ liệu trùng lặp, truy cập dữ liệu dựa theo chỉ số là vị trí mà chúng ta cần cúng được coi như 'Array' có các API phong phú hơn vào không bị fixsize như 'Array'.
 		+ List là 1 interface có 3 class con của Líst là Vector, ArrayLít, LinkedList:
   		+ Vector và ArrayList có thể hình dung như các Arry thuần túy có thẻ thay đổi kích thước, truy xuất phần tử dễ ràng, khi khi khởi tạo được set 1 số lượng phần tử nhất định khi đầy thì Vector sẽ được 'double' kích thước, ArrayList thì chỉ được tăng 50% kích thước.
-  	 + LinkedList: addg , remove tốt hơn như các thao tác 'get' dữ liệu tệ rất là nhiều.
+  	 	+ LinkedList: addg , remove tốt hơn như các thao tác 'get' dữ liệu tệ rất là nhiều.
   	- Set không có thứ tự và không thể trùng lặp, có 3 class con là HashSet, TreeSet, LinkedHashSet:
-  	  + 
+  	- Map ánh xạ (key and value).
+ 
+- Thead:
+  	+ start: bắt đầu luồng.
+  	+ stop: kết thúc luồng (không thể sart lại luồng phải khởi tạo lại luồng).
+  	+ sleep(value): tạm dừng luồng với value mini giây.
+  	+ join: sửa lý tuần tự khi gặp join thì thực hiện xong hàm mới xử lý tiếp.
