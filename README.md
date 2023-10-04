@@ -70,10 +70,15 @@
   		+ Vector và ArrayList có thể hình dung như các Arry thuần túy có thẻ thay đổi kích thước, truy xuất phần tử dễ ràng, khi khi khởi tạo được set 1 số lượng phần tử nhất định khi đầy thì Vector sẽ được 'double' kích thước, ArrayList thì chỉ được tăng 50% kích thước.
   	 	+ LinkedList: addg , remove tốt hơn như các thao tác 'get' dữ liệu tệ rất là nhiều.
   	- Set không có thứ tự và không thể trùng lặp, có 3 class con là HashSet, TreeSet, LinkedHashSet:
-  	- Map ánh xạ (key and value).
+  	- Map ánh xạ (key and value)
  
 - Thead:
-  	+ start: bắt đầu luồng.
-  	+ stop: kết thúc luồng (không thể sart lại luồng phải khởi tạo lại luồng).
-  	+ sleep(value): tạm dừng luồng với value mini giây.
-  	+ join: sửa lý tuần tự khi gặp join thì thực hiện xong hàm mới xử lý tiếp.
+	- Tạo 1 Thead nới:
+   		+ extends Thread. public class Multi extends Thread {public void run() {System.out.println("thread is running...");}}
+  		+ implments Runnable: public class Multi2 implements Runnable { @Override public void run() {System.out.println("Runnable is running...");}}
+  	- Start 1 Thead: Multi.start();
+  	- Thread.sleep() thực thi, nó luôn tạm dừng việc thực thi luồng hiện tại.
+  	- Thead.run():
+  	  	+ Mỗi luồng bắt đầu trong một ngăn xếp cuộc gọi riêng biệt.
+		+ Gọi phương thức run() từ luồng chính, phương thức run() sẽ đi vào ngăn xếp cuộc gọi hiện tại thay vì ở đầu ngăn xếp cuộc gọi mới.
+			
