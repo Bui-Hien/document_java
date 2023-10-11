@@ -1,0 +1,5 @@
+khong cho docker khoi dong voi may: sudo systemctl disable docker
+bat docker: sudo systemctl start docker
+tat docker: sudo systemctl stop docker
+Tk :admin
+mk: https://localhost:9443/#!/init/admin
