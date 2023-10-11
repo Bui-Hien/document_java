@@ -3,3 +3,22 @@ bat docker: sudo systemctl start docker
 tat docker: sudo systemctl stop docker
 Tk :admin
 mk: https://localhost:9443/#!/init/admin
+
+
+tao mysql
+docker run -e MYSQL_ROOT_PASSWORD=Abc@123456789 \
+    --name mysql8-container \
+    -p 3307:3306 \
+    -v mysql8-volume:/var/lib/mysql \
+    -d mysql:8
+
+tao sql server:
+
+docker pull mcr.microsoft.com/mssql/server:2019-CU15-ubuntu-20.04
+docker run -e "ACCEPT_EULA=Y" \
+-e "MSSQL_SA_PASSWORD=Abc@13456789" \
+--name sql-server-2019-container \
+-p 1435:1433 \
+-d mcr.microsoft.com/mssql/server:2019-CU15-ubuntu-20.04
+
+
