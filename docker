@@ -4,7 +4,7 @@ tat docker: sudo systemctl stop docker
 Tk :admin
 mk: https://localhost:9443/#!/init/admin
 docker exec -it mysql8-container bash
-
+mysql -u root -p
 tao mysql
 docker run -e MYSQL_ROOT_PASSWORD=Abc@123456789 \
     --name mysql8-container \
