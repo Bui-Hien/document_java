@@ -1,0 +1,61 @@
+services:
+  mysql8-container:
+    image: mysql:8.1.0
+    container_name: mysql8-container
+    restart: always
+    ports:
+      - "3307:3306"
+    networks:
+      - mydatabases
+    environment:
+      MYSQL_ROOT_PASSWORD: Abc123456789@
+      MYSQL_ROOT_HOST: "%"
+  phpmyadmin8-container:
+    image: phpmyadmin/phpmyadmin    
+    container_name: phpmyadmin8-container
+    restart: always
+    ports:
+      - "8088:80"
+    environment:
+      PMA_HOST: mysql8-container #phpMyAdmin Host
+    networks:
+      - mydatabases
+  mysql5-container:
+    image: mysql:5.7.43    
+    container_name: mysql5-container
+    restart: always
+    ports:
+      - "3308:3306"
+    networks:
+      - mydatabases
+    environment:
+      MYSQL_ROOT_PASSWORD: Abc123456789@
+      MYSQL_ROOT_HOST: "%"
+  
+  phpmyadmin5-container:
+    image: phpmyadmin/phpmyadmin    
+    container_name: phpmyadmin5-container
+    restart: always
+    ports:
+      - "8089:80"
+    environment:
+      PMA_HOST: mysql5-container
+    networks:
+      - mydatabases
+  sqlserver2022-container:
+    image: mcr.microsoft.com/mssql/server:2022-latest    
+    container_name: sqlserver2022-container
+    restart: always
+    ports:
+      - "1434:1433"
+    environment:
+      SA_PASSWORD: Abc123456789@
+      ACCEPT_EULA: Y
+    networks:
+      - mydatabases
+
+networks:
+  mydatabases:
+
+#docker-compose -f ./deployment.yml down
+#docker-compose -f ./deployment.yml up -d  
