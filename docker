@@ -2,7 +2,7 @@ khong cho docker khoi dong voi may: sudo systemctl disable docker
 bat docker: sudo systemctl start docker
 tat docker: sudo systemctl stop docker
 Tk :admin
-mk: https://localhost:9443/#!/init/admin
+mk: https://localhost:9443/
 docker exec -it mysql8-container bash
 mysql -u root -p
 tao mysql
