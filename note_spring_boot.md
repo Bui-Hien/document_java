@@ -19,16 +19,5 @@
   + Số lượng bean cho mỗi lớp:
     + "@Component" mặc định sử dụng kiểu Singleton vho bean, nhưng cũng có thể cấu hình chúng để sử dụng kiểu Prototupe nế cần.
     + "@Bean" cho phét tạo một hoặc nhiều kiểu bean theo ý muốn.
-  + Cách khởi tạo:
-    + "@Component":  @Component
-                      public class MyComponent {
-                          // Class definition
-                      }
-    + "@Bean":  @Configuration
-                public class MyConfig {
-                    @Bean
-                    public MyBean myBean() {
-                        return new MyBean();
-                    }
-                }
+
 
