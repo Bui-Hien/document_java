@@ -20,4 +20,8 @@
     + "@Component" mặc định sử dụng kiểu Singleton vho bean, nhưng cũng có thể cấu hình chúng để sử dụng kiểu Prototupe nế cần.
     + "@Bean" cho phét tạo một hoặc nhiều kiểu bean theo ý muốn.
 
+- Comparing Lazy Initialization vs Eager Initialization:
+    + Thời gian khởi tạo:
+        + 
+
 
