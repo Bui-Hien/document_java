@@ -1,0 +1,9 @@
+404: khong tim thay tai nguyen (resource is not found)
+500: loi ngoai le tu may chu (Server error)
+400: loi xac thuc (validable error)
+200: thanh cong (success)
+201: tao thanh cong (created)
+204: khong cung cap noi dung (No content)
+401: unauthorized (when authorization fails)
+400: yeu cau khong hop le-vi du: loi xac thuc (bad Request)
+
