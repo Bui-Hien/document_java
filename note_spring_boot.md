@@ -214,27 +214,27 @@
         }
     + Dynamic Filtering: Customize filtering for a bean for specific REST API
       + @JsonFilter with FilterProvider
-        @JsonFilter("myDynamicFilter")
-        public class MyBean {
-            private String field1;
-            private String field2;
-            private String fieldToInclude;
-        }
-        @RestController
-        public class MyController {
-            @GetMapping("/filtered-data")
-            public MappingJacksonValue retrieveFilteredData() {
-                MyBean myBean = new MyBean();
-                // Set các giá trị cho myBean
-                
-                SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field1", "field2");
-                FilterProvider filters = new SimpleFilterProvider().addFilter("myDynamicFilter", filter);
-                
-                MappingJacksonValue mapping = new MappingJacksonValue(myBean);
-                mapping.setFilters(filters);
-                
-                return mapping;
-            }
-        }
+          @JsonFilter("myDynamicFilter")
+          public class MyBean {
+              private String field1;
+              private String field2;
+              private String fieldToInclude;
+          }
+          @RestController
+          public class MyController {
+              @GetMapping("/filtered-data")
+              public MappingJacksonValue retrieveFilteredData() {
+                  MyBean myBean = new MyBean();
+                  // Set các giá trị cho myBean
+                  
+                  SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field1", "field2");
+                  FilterProvider filters = new SimpleFilterProvider().addFilter("myDynamicFilter", filter);
+                  
+                  MappingJacksonValue mapping = new MappingJacksonValue(myBean);
+                  mapping.setFilters(filters);
+                  
+                  return mapping;
+              }
+          }
 
 
