@@ -167,3 +167,9 @@
 - @RequestMapping():
   + Chú thích @RequestMapping() được sử dụng để ánh xạ một phương thức trong controller với một URI hoặc URL cụ thể.
   + Nó xác định URL mà phương thức sẽ xử lý khi một yêu cầu HTTP đến.
+- Request Methods for REST API
+  + GET - Retrieve details of a resource (Truy xuất chi tiết của một tài nguyên: Sử dụng để lấy thông tin chi tiết về một tài nguyên cụ thể từ máy chủ, thường là thông qua URL. Không làm thay đổi dữ liệu trên máy chủ).
+  + POST - Create a new resource (Tạo một tài nguyên mới: Sử dụng để tạo một tài nguyên mới trên máy chủ. Thông qua phương thức này, dữ liệu mới được gửi đến máy chủ để tạo một tài nguyên mới)
+  + PUT - Update an existing resource ( Cập nhật một tài nguyên hiện có: Sử dụng để cập nhật toàn bộ thông tin của một tài nguyên đã tồn tại hoặc tạo tài nguyên mới nếu chưa tồn tại.)
+  + PATCH - Update part of a resource (Cập nhật một phần của tài nguyên: Sử dụng để cập nhật một phần nhỏ của tài nguyên đã tồn tại mà không ảnh hưởng đến các phần khác của tài nguyên)
+  + DELETE - Delete a resource(Xóa một tài nguyên: Sử dụng để xóa hoặc loại bỏ một tài nguyên cụ thể từ máy chủ)
