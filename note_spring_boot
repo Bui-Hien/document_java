@@ -173,3 +173,68 @@
   + PUT - Update an existing resource ( Cập nhật một tài nguyên hiện có: Sử dụng để cập nhật toàn bộ thông tin của một tài nguyên đã tồn tại hoặc tạo tài nguyên mới nếu chưa tồn tại.)
   + PATCH - Update part of a resource (Cập nhật một phần của tài nguyên: Sử dụng để cập nhật một phần nhỏ của tài nguyên đã tồn tại mà không ảnh hưởng đến các phần khác của tài nguyên)
   + DELETE - Delete a resource(Xóa một tài nguyên: Sử dụng để xóa hoặc loại bỏ một tài nguyên cụ thể từ máy chủ)
+
+- Important Response Statuses:
+  + 400: loi xac thuc (validable error)
+  + 200: thanh cong (success)
+  + 201: tao thanh cong (created)
+  + 204: khong cung cap noi dung (No content)
+  + 401: unauthorized  (when authorization fails) -Mã trạng thái 401 được sử dụng khi yêu cầu HTTP yêu cầu xác thực (authentication) nhưng xác thực không thành công hoặc chưa được thực hiện.
+  + 400: yeu cau khong hop le-vi du: loi xac thuc (bad Request) - Mã trạng thái 400 được sử dụng khi máy chủ không thể hiểu hoặc xử lý yêu cầu HTTP do yêu cầu không hợp lệ hoặc không đúng định dạng.
+  + 404: khong tim thay tai nguyen (resource is not found)
+  + 500: loi ngoai le tu may chu (Server error)
+
+- Versioning REST API - Options 
+  + URI Versioning - Twitter
+    + http://localhost:8080/v1/person
+    + http://localhost:8080/v2/person
+  + Request Parameter versioning - Amazon
+    + http://localhost:8080/person?version=1
+    + http://localhost:8080/person?version=2
+  + (Custom) headers versioning - Microsoft
+    + SAME-URL headers=[X-API-VERSION=1]
+    + SAME-URL headers=[X-API-VERSION=2]
+  + Media type versioning (a.k.a “content negotiation” or “accept header”) - GitHub
+    + SAME-URL produces=application/vnd.company.app-v1+json
+    + SAME-URL produces=application/vnd.company.app-v2+json
+
+- Customizing REST API Responses - Filtering and more..
+  + Two types:
+    + Static Filtering: Same filtering for a bean across different REST API
+      + @JsonIgnoreProperties, @JsonIgnore
+        @JsonIgnoreProperties(value = {"fieldToIgnore1", "fieldToIgnore2"})
+        public class MyBean {
+          private String field1;
+          private String field2;
+          
+          @JsonIgnore
+          private String fieldToIgnore1;
+          
+          // Getter và Setter
+        }
+    + Dynamic Filtering: Customize filtering for a bean for specific REST API
+      + @JsonFilter with FilterProvider
+        @JsonFilter("myDynamicFilter")
+        public class MyBean {
+            private String field1;
+            private String field2;
+            private String fieldToInclude;
+        }
+        @RestController
+        public class MyController {
+            @GetMapping("/filtered-data")
+            public MappingJacksonValue retrieveFilteredData() {
+                MyBean myBean = new MyBean();
+                // Set các giá trị cho myBean
+                
+                SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field1", "field2");
+                FilterProvider filters = new SimpleFilterProvider().addFilter("myDynamicFilter", filter);
+                
+                MappingJacksonValue mapping = new MappingJacksonValue(myBean);
+                mapping.setFilters(filters);
+                
+                return mapping;
+            }
+        }
+
+
