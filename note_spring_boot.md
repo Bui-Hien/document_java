@@ -202,24 +202,42 @@
   + Two types:
     + Static Filtering: Same filtering for a bean across different REST API
       + @JsonIgnoreProperties, @JsonIgnore
+        import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+        import com.fasterxml.jackson.annotation.JsonIgnore;
+        
         @JsonIgnoreProperties(value = {"fieldToIgnore1", "fieldToIgnore2"})
         public class MyBean {
-          private String field1;
-          private String field2;
-          
-          @JsonIgnore
-          private String fieldToIgnore1;
-          
-          // Getter và Setter
+            private String field1;
+            private String field2;
+            
+            @JsonIgnore
+            private String fieldToIgnore1;
+            
+            // Getter và Setter
         }
+
     + Dynamic Filtering: Customize filtering for a bean for specific REST API
       + @JsonFilter with FilterProvider
+          import com.fasterxml.jackson.annotation.JsonFilter;
+          import com.fasterxml.jackson.databind.ser.FilterProvider;
+          import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+          import com.fasterxml.jackson.databind.ObjectMapper;
+
           @JsonFilter("myDynamicFilter")
           public class MyBean {
               private String field1;
               private String field2;
               private String fieldToInclude;
+              
+              // Getter và Setter
           }
+
+          // Sử dụng lọc động trong controller
+          import com.fasterxml.jackson.databind.ObjectMapper;
+          import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+          import com.fasterxml.jackson.databind.ser.FilterProvider;
+          import com.fasterxml.jackson.databind.ser.FilterProvider;
+          
           @RestController
           public class MyController {
               @GetMapping("/filtered-data")
@@ -236,5 +254,6 @@
                   return mapping;
               }
           }
+
 
 
