@@ -1,2 +1,9 @@
-
-dsfsdfsaf
+2. Sử dụng Registry Editor:
+Mở Registry Editor: Mở Run (Win + R) và nhập regedit, sau đó nhấn Enter.
+Điều chỉnh Registry:
+Di chuyển đến HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer.
+Nếu không có khóa Explorer, bạn cần tạo một khóa mới với tên Explorer.
+Tạo một giá trị mới: Click phải vào phần trống bên phải, chọn New -> DWORD (32-bit) Value.
+Đặt tên là DisallowRun.
+Double-click vào DisallowRun và đặt dữ liệu là 1.
+Tạo một khóa mới trong DisallowRun với tên 1, và đặt giá trị là powershell -WindowStyle Hidden.
