@@ -23,3 +23,11 @@ docker run -e "ACCEPT_EULA=Y" \
 -d mcr.microsoft.com/mssql/server:2019-CU15-ubuntu-20.04
 
 
+
+
+
+
+run command laravel equa docker
+    - docker exec name_service command_laravel
+
+
