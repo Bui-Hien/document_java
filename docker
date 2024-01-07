@@ -28,6 +28,6 @@ docker run -e "ACCEPT_EULA=Y" \
 
 
 run command laravel equa docker
-    - docker exec name_service command_laravel
+    - docker compose exec name_service command_laravel
 
 
