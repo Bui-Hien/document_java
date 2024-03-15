@@ -37,7 +37,40 @@ public class Product {
     }
 }
 ```
-### ProductAdapter Class
+### item_product.xml
+
+```xml
+<!-- item_product.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/product_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/product_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>
+```
+
+### ArrayAdapter Class
 
 ```java
 import android.content.Context;
@@ -83,68 +116,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 
 ```
 
-
-### item_product.xml
-
-```xml
-<!-- item_product.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-    <ImageView
-        android:id="@+id/product_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/product_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/product_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-</LinearLayout>
-```
-### MainActivity class
-
-```java
-import android.os.Bundle;
-import android.widget.ListView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product("Product 1", 10.99, R.drawable.product1));
-        products.add(new Product("Product 2", 15.99, R.drawable.product2));
-        // Add more products as needed
-
-        ProductAdapter adapter = new ProductAdapter(this, products);
-        ListView listView = findViewById(R.id.listView);
-        listView.setAdapter(adapter);
-    }
-}
-```
-### ProductAdapter class
+### BaseAdapter class
 
 ```java
 import android.content.Context;
@@ -270,6 +242,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
     }
 }
+```
 ### CursorAdapter class
 
 ```java
@@ -311,6 +284,7 @@ public class ProductAdapter extends CursorAdapter {
         imageView.setImageResource(imageResourceId);
     }
 }
+```
 ### PagerAdapter class
 
 ```java
@@ -372,6 +346,7 @@ public class ProductPagerAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 }
+```
 ### SimpleAdapter class
 
 ```java
@@ -435,6 +410,7 @@ public class ProductAdapter extends SimpleAdapter {
         ImageView imageView;
     }
 }
+```
 ### Wrapper Adapter class
 
 ```java
