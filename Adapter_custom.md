@@ -82,6 +82,8 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 }
 
 ```
+
+
 ### item_product.xml
 
 ```xml
@@ -139,6 +141,363 @@ public class MainActivity extends AppCompatActivity {
         ProductAdapter adapter = new ProductAdapter(this, products);
         ListView listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
+    }
+}
+```
+### ProductAdapter class
+
+```java
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+public class ProductAdapter extends BaseAdapter {
+
+    private Context mContext;
+    private ArrayList<Product> mProductList;
+
+    public ProductAdapter(Context context, ArrayList<Product> productList) {
+        mContext = context;
+        mProductList = productList;
+    }
+
+    @Override
+    public int getCount() {
+        return mProductList.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return mProductList.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
+
+        if (convertView == null) {
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.list_item_product, parent, false);
+            holder = new ViewHolder();
+            holder.nameTextView = convertView.findViewById(R.id.product_name);
+            holder.priceTextView = convertView.findViewById(R.id.product_price);
+            holder.imageView = convertView.findViewById(R.id.product_image);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        Product product = (Product) getItem(position);
+
+        holder.nameTextView.setText(product.getName());
+        holder.priceTextView.setText(String.valueOf(product.getPrice()));
+        holder.imageView.setImageResource(product.getImageResourceId());
+
+        return convertView;
+    }
+
+    private static class ViewHolder {
+        TextView nameTextView;
+        TextView priceTextView;
+        ImageView imageView;
+    }
+}
+```
+### RecyclerView.Adapter class
+
+```java
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
+
+    private Context context;
+    private List<Product> productList;
+
+    public ProductAdapter(Context context, List<Product> productList) {
+        this.context = context;
+        this.productList = productList;
+    }
+
+    @NonNull
+    @Override
+    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_product, parent, false);
+        return new ProductViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+        Product product = productList.get(position);
+        holder.txtName.setText(product.getName());
+        holder.txtPrice.setText(String.valueOf(product.getPrice()));
+        holder.imgProduct.setImageResource(product.getImageResourceId());
+    }
+
+    @Override
+    public int getItemCount() {
+        return productList.size();
+    }
+
+    public static class ProductViewHolder extends RecyclerView.ViewHolder {
+        TextView txtName, txtPrice;
+        ImageView imgProduct;
+
+        public ProductViewHolder(@NonNull View itemView) {
+            super(itemView);
+            txtName = itemView.findViewById(R.id.txt_name);
+            txtPrice = itemView.findViewById(R.id.txt_price);
+            imgProduct = itemView.findViewById(R.id.img_product);
+        }
+    }
+}
+### CursorAdapter class
+
+```java
+import android.content.Context;
+import android.database.Cursor;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CursorAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class ProductAdapter extends CursorAdapter {
+
+    public ProductAdapter(Context context, Cursor cursor) {
+        super(context, cursor, 0);
+    }
+
+    @Override
+    public View newView(Context context, Cursor cursor, ViewGroup parent) {
+        return LayoutInflater.from(context).inflate(R.layout.product_item, parent, false);
+    }
+
+    @Override
+    public void bindView(View view, Context context, Cursor cursor) {
+        // Mapping data from cursor to views
+        TextView nameTextView = view.findViewById(R.id.name);
+        TextView priceTextView = view.findViewById(R.id.price);
+        ImageView imageView = view.findViewById(R.id.image);
+
+        // Extracting data from cursor
+        String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+        double price = cursor.getDouble(cursor.getColumnIndexOrThrow("price"));
+        int imageResourceId = cursor.getInt(cursor.getColumnIndexOrThrow("imageResourceId"));
+
+        // Setting data to views
+        nameTextView.setText(name);
+        priceTextView.setText(String.valueOf(price));
+        imageView.setImageResource(imageResourceId);
+    }
+}
+### PagerAdapter class
+
+```java
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
+
+import java.util.List;
+
+public class ProductPagerAdapter extends PagerAdapter {
+
+    private Context mContext;
+    private List<Product> mProductList;
+
+    public ProductPagerAdapter(Context context, List<Product> productList) {
+        mContext = context;
+        mProductList = productList;
+    }
+
+    @Override
+    public int getCount() {
+        return mProductList.size();
+    }
+
+    @Override
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+        return view == object;
+    }
+
+    @NonNull
+    @Override
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        View itemView = inflater.inflate(R.layout.item_product, container, false);
+
+        // Binding data
+        ImageView imageView = itemView.findViewById(R.id.imageViewProduct);
+        TextView nameTextView = itemView.findViewById(R.id.textViewProductName);
+        TextView priceTextView = itemView.findViewById(R.id.textViewProductPrice);
+
+        Product product = mProductList.get(position);
+        imageView.setImageResource(product.getImageResourceId());
+        nameTextView.setText(product.getName());
+        priceTextView.setText(String.valueOf(product.getPrice()));
+
+        container.addView(itemView);
+
+        return itemView;
+    }
+
+    @Override
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        container.removeView((View) object);
+    }
+}
+### SimpleAdapter class
+
+```java
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
+
+import java.util.List;
+import java.util.Map;
+
+public class ProductAdapter extends SimpleAdapter {
+    private Context mContext;
+    private List<? extends Map<String, ?>> mData;
+    private int mResource;
+    private String[] mFrom;
+    private int[] mTo;
+
+    public ProductAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
+        super(context, data, resource, from, to);
+        this.mContext = context;
+        this.mData = data;
+        this.mResource = resource;
+        this.mFrom = from;
+        this.mTo = to;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View view = convertView;
+        ViewHolder holder;
+
+        if (view == null) {
+            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(mResource, null);
+            holder = new ViewHolder();
+            holder.nameTextView = (TextView) view.findViewById(R.id.product_name);
+            holder.priceTextView = (TextView) view.findViewById(R.id.product_price);
+            holder.imageView = (ImageView) view.findViewById(R.id.product_image);
+            view.setTag(holder);
+        } else {
+            holder = (ViewHolder) view.getTag();
+        }
+
+        Map<String, ?> item = mData.get(position);
+        if (item != null) {
+            holder.nameTextView.setText((String) item.get("name"));
+            holder.priceTextView.setText(String.valueOf(item.get("price")));
+            holder.imageView.setImageResource((Integer) item.get("imageResourceId"));
+        }
+
+        return view;
+    }
+
+    static class ViewHolder {
+        TextView nameTextView;
+        TextView priceTextView;
+        ImageView imageView;
+    }
+}
+### Wrapper Adapter class
+
+```java
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.List;
+
+public class ProductAdapter extends BaseAdapter {
+    private Context mContext;
+    private List<Product> mProductList;
+
+    public ProductAdapter(Context context, List<Product> productList) {
+        mContext = context;
+        mProductList = productList;
+    }
+
+    @Override
+    public int getCount() {
+        return mProductList.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return mProductList.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
+
+        if (convertView == null) {
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_product, parent, false);
+            viewHolder = new ViewHolder();
+            viewHolder.nameTextView = convertView.findViewById(R.id.nameTextView);
+            viewHolder.priceTextView = convertView.findViewById(R.id.priceTextView);
+            viewHolder.imageView = convertView.findViewById(R.id.imageView);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+
+        Product product = (Product) getItem(position);
+        viewHolder.nameTextView.setText(product.getName());
+        viewHolder.priceTextView.setText(String.valueOf(product.getPrice()));
+        viewHolder.imageView.setImageResource(product.getImageResourceId());
+
+        return convertView;
+    }
+
+    private static class ViewHolder {
+        TextView nameTextView;
+        TextView priceTextView;
+        ImageView imageView;
     }
 }
 ```
