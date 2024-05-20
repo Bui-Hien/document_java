@@ -34,3 +34,5 @@ touch de tao file:
 grep "string can search" name_file (search strong in file).
 sort <option> <file>: sort tang hoac giam.
 rmdir name_folder: detele folder.
+
+netstat -a : liet ke cac cong dang dung
