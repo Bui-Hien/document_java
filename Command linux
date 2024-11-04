@@ -24,6 +24,7 @@ mv (move) di chuyen hoac doi ten:
 
 mkdir (make directory) tao thu muc
   + mkdir namedirectiry.
+  + mkdir -p parent/child/grandchild
 
 rm (remove) xoa cac file or folder.
   
