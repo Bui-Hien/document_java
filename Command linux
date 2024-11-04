@@ -22,6 +22,9 @@ mv (move) di chuyen hoac doi ten:
   + mv oldfile.txt newfile.txt
   + mv file.txt /home/user/documents/
 
+Khi bạn dùng touch để tạo tệp tin, nếu tệp đó chưa tồn tại, nó sẽ tạo một tệp trống mới.
+  + touch myfile.txt
+
 mkdir (make directory) tao thu muc
   + mkdir namedirectiry.
   + mkdir -p parent/child/grandchild
